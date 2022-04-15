@@ -9,6 +9,7 @@ const Counter = () => {
   // need to pass function in useSelector
   // I will get the data automatically when changes may happen in any state. So I always have the latest counter. If I unMount the component, remove from the DOM react redux will autometically clear the subscription.
   const counter = useSelector(state => state.counter);
+  const show = useSelector(state => state.showCounter)
 
   const handleIncrement = () => {
     dispatch({type: 'increment'})
@@ -22,12 +23,14 @@ const Counter = () => {
     dispatch({type: 'decrement'})
   }
 
-  const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {
+    dispatch({type: 'toggle'})
+  };
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {show && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={handleIncrement}>Increment</button>
         <button onClick={handleIncrese}>Increse by 5</button>
