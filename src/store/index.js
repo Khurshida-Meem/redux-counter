@@ -7,6 +7,12 @@ const counterReducer = (state = { counter: 0 }, action) => {
         }
     }
 
+    if (action.type === 'increse') {
+        return {
+            counter: state.counter + action.amount,
+        }
+    }
+
     if (state.counter>0 && action.type === 'decrement') {
         return {
             counter: state.counter -1,
@@ -19,3 +25,4 @@ const counterReducer = (state = { counter: 0 }, action) => {
 const store = createStore(counterReducer);
 
 export default store;
+
