@@ -13,11 +13,14 @@ const counterSlice = createSlice({
             state.counter++;
          },
         decrement(state) {
-            state.counter--;
+            if (state.counter > 0) {
+                state.counter--;
+            }
+            
         },
         // if we need aditional data to access we need to add action as parameter. Otherwise we only declare state as parameter.
         increse(state, action) {
-            state.counter = state.counter + action.amount;
+            state.counter = state.counter + action.payload;
          },
         toggleCounter(state) {
             state.showCounter = !state.showCounter;
@@ -59,11 +62,14 @@ const counterSlice = createSlice({
 
 //     return state;
 // }
-
 // const store = createStore(counterSlice.reducer);
+
+
 const store = configureStore({
     reducer: counterSlice.reducer
 });
+
+export const counterActions = counterSlice.actions;
 
 export default store;
 
