@@ -7,7 +7,7 @@ const counterReducer = (state = { counter: 0 }, action) => {
         }
     }
 
-    if (action.type === 'decrement') {
+    if (state.counter>0 && action.type === 'decrement') {
         return {
             counter: state.counter -1,
         }
