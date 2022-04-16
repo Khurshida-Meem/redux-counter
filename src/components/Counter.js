@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { counterActions } from '../store';
+import { counterActions } from '../store/counter-slice';
 
 import classes from './Counter.module.css';
 
@@ -9,8 +9,8 @@ const Counter = () => {
 
   // need to pass function in useSelector
   // I will get the data automatically when changes may happen in any state. So I always have the latest counter. If I unMount the component, remove from the DOM react redux will autometically clear the subscription.
-  const counter = useSelector(state => state.counter);
-  const show = useSelector(state => state.showCounter)
+  const counter = useSelector(state => state.counter.counter);
+  const show = useSelector(state => state.counter.showCounter)
 
   const handleIncrement = () => {
     dispatch(counterActions.increment());
